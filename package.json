@@ -1,12 +1,24 @@
 {
-  "name": "vue-nepali-calender",
+  "name": "calender",
   "version": "1.0.0",
-  "description": "vue nepali calender",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "vue serve src/Calender.vue"
+  "main": "dist/index.umd.js",
+  "module": "dist/index.esm.js",
+  "unpkg": "dist/index.min.js",
+  "browser": {
+    "./sfc": "src/index.js"
   },
-  "author": "Tek Raj",
-  "license": "ISC"
+  "scripts": {
+    "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
+    "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/index.umd.js",
+    "build:es": "rollup --config build/rollup.config.js --format es --file dist/index.esm.js",
+    "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/index.min.js"
+  },
+  "devDependencies": {
+    "rollup": "^1.17.0",
+    "@rollup/plugin-buble": "^0.21.3",
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "rollup-plugin-vue": "^5.0.1",
+    "vue": "^2.6.10",
+    "vue-template-compiler": "^2.6.10"
+  }
 }
