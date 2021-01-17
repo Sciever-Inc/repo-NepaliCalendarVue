@@ -1,0 +1,12 @@
+{
+  "name": "vue-nepali-calender",
+  "version": "1.0.0",
+  "description": "vue nepali calender",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "vue serve src/Calender.vue"
+  },
+  "author": "Tek Raj",
+  "license": "ISC"
+}
