@@ -84,7 +84,7 @@ export default {
     },
     selectDate: function (day){
       this.currentBSDate.bsDate = day;
-      this.currentADDate = this.getAdDateByBsDate(this.currentBSDate.bsYear,this.currentBSDate.bsMonth+1,this.currentBSDate.bsDate);
+      this.currentADDate = this.dateConversion.getAdDateByBsDate(this.currentBSDate.bsYear,this.currentBSDate.bsMonth+1,this.currentBSDate.bsDate);
       this.$root.$emit('dateSelected', this.currentADDate);
     },
     createCalender(){
