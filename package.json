@@ -1,5 +1,5 @@
 {
-  "name": "calender",
+  "name": "vue-nepali-calender",
   "version": "1.0.0",
   "main": "dist/index.umd.js",
   "module": "dist/index.esm.js",

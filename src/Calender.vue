@@ -1,5 +1,7 @@
 <template>
-  <div class="calender-interface">
+<div class="calender-wrapper">
+  <input type="text"   @focus="calenderStatus('focus')" @blur="calenderStatus('blur')" v-model="currentBSDateString">
+  <div class="calender-interface" @mouseover="insideCalender=true" @mouseout="insideCalender=false" v-bind:class="{hide:hideCalender,show:!hideCalender}">
     <div class="info-container">
       <ul>
         <li class="text-left nextprev">
@@ -43,6 +45,7 @@
       </table>
     </div>
   </div>
+  </div>
 </template>
 <script>
 import {DateConversion} from "./DateConversion";
@@ -60,11 +63,20 @@ export default {
   },
   mounted() {
     this.currentBSDate = this.dateConversion.getBsDateByAdDate(this.currentADDate.getFullYear(), this.currentADDate.getMonth() + 1, this.currentADDate.getDate());
-    this.bsYears = Array.from(Array(DATE_RANGE.maxDate - DATE_RANGE.minDate).keys()).map(e => e + 1 + DATE_RANGE.minDate);
+    this.currentBSDateString = this.currentBSDate.bsYear+'/'+this.currentBSDate.bsMonth+'/'+this.currentBSDate.bsDate;
+   this.bsYears = Array.from(Array(DATE_RANGE.maxDate - DATE_RANGE.minDate).keys()).map(e => e + 1 + DATE_RANGE.minDate);
     this.createCalender();
+    
   },
 
   methods: {
+    calenderStatus: function (type){
+      if(type=='focus'){
+        this.hideCalender =  false;
+      }else{
+        this.hideCalender = this.insideCalender? false :  true;
+      }
+    },
     changeMonth: function (factor){
       const month = this.currentBSDate.bsMonth+factor;
       if(month>12){
@@ -83,10 +95,13 @@ export default {
       this.createCalender();
     },
     selectDate: function (day){
+      this.hideCalender = false;
       this.currentBSDate.bsDate = day;
+      this.currentBSDateString = this.currentBSDate.bsYear+'/'+this.currentBSDate.bsMonth+'/'+this.currentBSDate.bsDate;
       this.currentADDate = this.dateConversion.getAdDateByBsDate(this.currentBSDate.bsYear,this.currentBSDate.bsMonth+1,this.currentBSDate.bsDate);
       this.$emit('dateSelected', this.currentADDate);
-    },
+      this.hideCalender = true;
+   },
     createCalender(){
       this.monthDaysArray =[];
       const maxMonthDays = this.dateConversion.getBsMonthDays(this.currentBSDate.bsYear, this.currentBSDate.bsMonth);
@@ -114,6 +129,9 @@ export default {
   data() {
     return {
       dateConversion: new DateConversion(),
+      insideCalender:false,
+      hideCalender:true,
+      currentBSDateString:'',
       currentADDate:  new Date(),
       currentBSDate: {
         bsYear: 0,
@@ -130,6 +148,10 @@ export default {
 }
 </script>
 <style scoped>
+.hide{display:none;}
+.show{display:block}
+.calender-interface{position:absolute;}
+.calender-wrapper{position: relative;}
 .calender-table thead th {
   padding: 10px;
   background: #000;
@@ -148,6 +170,7 @@ export default {
   color: #fff;
   text-decoration: none;
   text-align: center;
+  cursor: pointer;
 }
 
 .calender-table tbody td.active {
@@ -157,7 +180,6 @@ export default {
 .calender-interface {
   padding: 10px;
   border: 1px solid #ccc;
-  display: inline-block;
   background: #000;
 }
 
