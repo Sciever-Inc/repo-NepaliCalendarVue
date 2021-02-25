@@ -55,20 +55,21 @@ import {DAYS} from './constants/days';
 export default {
   props:['adDate'],
   watch: {
-    adDate: function(date) {
-      this.currentADDate = date;
-      this.currentBSDate = this.dateConversion.getBsDateByAdDate(this.currentADDate.getFullYear(), this.currentADDate.getMonth() + 1, this.currentADDate.getDate());
-      this.createCalender();
+    adDate: {
+      handler:function(n,o) {
+        this.currentADDate = n.adDate ? n.adDate : o.adDate;
+        this.currentBSDate = this.dateConversion.getBsDateByAdDate(this.currentADDate.getFullYear(), this.currentADDate.getMonth() + 1, this.currentADDate.getDate());
+        this.createCalender();
+      },
+      deep: true
     }
   },
   mounted() {
     this.currentBSDate = this.dateConversion.getBsDateByAdDate(this.currentADDate.getFullYear(), this.currentADDate.getMonth() + 1, this.currentADDate.getDate());
-    this.currentBSDateString = this.currentBSDate.bsYear+'/'+this.currentBSDate.bsMonth+'/'+this.currentBSDate.bsDate;
+    this.currentBSDateString = this.dateConversion.getNepaliNumber(this.currentBSDate.bsYear)+'/'+this.dateConversion.getNepaliNumber(this.currentBSDate.bsMonth)+'/'+this.dateConversion.getNepaliNumber(this.currentBSDate.bsDate);
    this.bsYears = Array.from(Array(DATE_RANGE.maxDate - DATE_RANGE.minDate).keys()).map(e => e + 1 + DATE_RANGE.minDate);
     this.createCalender();
-    
   },
-
   methods: {
     calenderStatus: function (type){
       if(type=='focus'){
@@ -97,7 +98,7 @@ export default {
     selectDate: function (day){
       this.hideCalender = false;
       this.currentBSDate.bsDate = day;
-      this.currentBSDateString = this.currentBSDate.bsYear+'/'+this.currentBSDate.bsMonth+'/'+this.currentBSDate.bsDate;
+      this.currentBSDateString = this.dateConversion.getNepaliNumber(this.currentBSDate.bsYear)+'/'+this.dateConversion.getNepaliNumber(this.currentBSDate.bsMonth)+'/'+this.dateConversion.getNepaliNumber(this.currentBSDate.bsDate);
       this.currentADDate = this.dateConversion.getAdDateByBsDate(this.currentBSDate.bsYear,this.currentBSDate.bsMonth+1,this.currentBSDate.bsDate);
       this.$emit('dateSelected', this.currentADDate);
       this.hideCalender = true;
