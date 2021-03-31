@@ -642,7 +642,7 @@ DateConversion.prototype.getBsDateByAdDate = function getBsDateByAdDate (adYear,
 
 DateConversion.prototype.getAdDateByBsDate = function getAdDateByBsDate (bsYear, bsMonth, bsDate) {
     var daysNumFromMinBsYear = this.getTotalDaysNumFromMinBsYear(bsYear, bsMonth, bsDate);
-    var adDate = new Date(this.minAdDateEqBsDate.ad.year, this.minAdDateEqBsDate.ad.month, this.minAdDateEqBsDate.ad.date - 1);
+    var adDate = new Date(this.minAdDateEqBsDate.ad.year, this.minAdDateEqBsDate.ad.month, this.minAdDateEqBsDate.ad.date);
     adDate.setDate(adDate.getDate() + daysNumFromMinBsYear);
     return adDate;
 };

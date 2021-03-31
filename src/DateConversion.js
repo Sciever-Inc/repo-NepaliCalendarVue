@@ -61,7 +61,7 @@ export class DateConversion {
 
     getAdDateByBsDate(bsYear, bsMonth, bsDate) {
         let daysNumFromMinBsYear = this.getTotalDaysNumFromMinBsYear(bsYear, bsMonth, bsDate);
-        let adDate = new Date(this.minAdDateEqBsDate.ad.year, this.minAdDateEqBsDate.ad.month, this.minAdDateEqBsDate.ad.date - 1);
+        let adDate = new Date(this.minAdDateEqBsDate.ad.year, this.minAdDateEqBsDate.ad.month, this.minAdDateEqBsDate.ad.date);
         adDate.setDate(adDate.getDate() + daysNumFromMinBsYear);
         return adDate;
     }
