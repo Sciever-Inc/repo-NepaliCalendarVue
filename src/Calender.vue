@@ -102,7 +102,7 @@ export default {
       this.hideCalender = false;
       this.currentBSDate.bsDate = day;
       this.currentBSDateString = this.dateConversion.getNepaliNumber(this.currentBSDate.bsYear)+'/'+this.dateConversion.getNepaliNumber(this.currentBSDate.bsMonth)+'/'+this.dateConversion.getNepaliNumber(this.currentBSDate.bsDate);
-      this.currentADDate = this.dateConversion.getAdDateByBsDate(this.currentBSDate.bsYear,this.currentBSDate.bsMonth+1,this.currentBSDate.bsDate);
+      this.currentADDate = this.dateConversion.getAdDateByBsDate(this.currentBSDate.bsYear,this.currentBSDate.bsMonth,this.currentBSDate.bsDate);
       this.$emit('dateSelected', this.currentADDate);
       this.hideCalender = true;
    },
