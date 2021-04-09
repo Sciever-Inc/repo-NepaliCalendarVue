@@ -5,7 +5,9 @@
     <div class="info-container">
       <ul>
         <li class="text-left nextprev">
-          <button @click="changeMonth(-1)">&lt;</button>
+          <button @click="changeMonth(-1)">
+            <span class="tri-1"></span>
+          </button>
         </li>
         <li class="text-center">
           <div class="date-info">
@@ -22,7 +24,7 @@
           </div>
         </li>
         <li class="text-right nextprev">
-          <button @click="changeMonth(1)">&gt;</button>
+          <button @click="changeMonth(1)"><span class="tri-2"></span></button>
         </li>
       </ul>
     </div>
@@ -152,82 +154,129 @@ export default {
 }
 </script>
 <style scoped>
-.hide{display:none;}
-.show{display:block}
-.calender-interface{position:absolute;}
 .calender-wrapper{position: relative;}
-.calender-table thead th {
-  padding: 10px;
-  background: #000;
-  color: #fff;
-}
-
-.calender-table tbody td {
-  padding: 10px;
-  background: #000;
-  text-align: center;
-
-}
-
-.calender-table tbody td a {
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  text-align: center;
-  cursor: pointer;
-}
-
-.calender-table tbody td.active {
-  background: red;
-}
-
 .calender-interface {
-  padding: 10px;
-  border: 1px solid #ccc;
-  background: #000;
+    display: inline-block;
+    position: absolute;
+    top:25px;
+    left: 0;
 }
+.calender-interface {
+    display: inline-block;
+    border: 1px solid #dbdbdb;
+    padding: 8px;
+}
+.hide{display: none!important;}
 
 .info-container {
-  color: #fff;
-  padding: 10px;
+    margin: 0;
+    border-radius: 5px 5px 0px 0px;
 }
 
 .info-container ul {
-  list-style: none;
-  width: 100%;
-  list-style: none;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.info-container ul li {
-  display: block;
-  float: left;
-  width: 70%;
-}
-
-.info-container ul li.nextprev {
-  width: 15%;
-}
-
-.text-right {
-  text-align: right;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin: 0;
+    padding: 10px 0px 10px 0px;
 }
 
 .text-left {
-  text-align: left;
+    display: inline-block;
+    flex: 1;
 }
 
-.text-center {
-  text-align: center;
+.date-info .text-center {
+    display: inline-block;
+    flex: 2;
+}
+
+.date-info select:first-child {
+    margin-right: 2px;
+    cursor: pointer;
 }
 
 .date-info select {
-  display: inline-block;
-  margin-right: 10px;
-  padding: 4px 8px;
-  border-radius: 3px;
-  outline: none !important;
+    padding: 2px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.text-right {
+    display: inline-block;
+    flex: 1;
+}
+
+.text-right button {
+    float: right;
+    border: none;
+    font-weight: 900;
+    background: transparent;
+    cursor: pointer;
+    color: #939393;
+}
+
+.text-left button {
+    border: none;
+    font-weight: 900;
+    background: transparent;
+    cursor: pointer;
+    color: #939393;
+}
+
+.calender-table tr th {
+    font-size: 14px;
+    padding: 3px;
+    font-weight: 500;
+}
+
+.calender-table tbody tr td {
+    transition: 0.2s;
+    text-align: center;
+    width: 32px;
+}
+
+.calender-table tbody tr td:hover {
+    cursor: pointer;
+}
+
+.calender-table tbody tr td a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #576574;
+}
+
+.calender-table tbody tr td:last-child a {
+    color: red !important;
+}
+
+.caleder-dates tbody {
+    height: 180px;
+}
+
+.tri-1 {
+    width: 0px;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-right: 14px solid #313131;
+    border-bottom: 7px solid transparent;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.select-section {
+    margin-top: -1px;
+}
+
+.tri-2 {
+    width: 0px;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-left: 14px solid #313131;
+    border-bottom: 7px solid transparent;
+    display: inline-block;
+    float: right;
+    margin-top: 2px;
+    cursor: pointer;
 }
 </style>
