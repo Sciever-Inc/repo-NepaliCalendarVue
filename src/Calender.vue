@@ -62,7 +62,7 @@ export default {
       handler:function(n,o) {
         this.currentADDate = n.adDate ? n.adDate : o.adDate;
         this.currentADDate = this.currentADDate ? new Date(this.currentADDate): new Date();
-        this.currentBSDate = this.dateConversion.getBsDateByAdDate(this.currentADDate.getFullYear(), this.currentADDate.getMonth() + 1, this.currentADDate.getDate());
+        this.currentBSDate = this.dateConversion.getBsDateByAdDate(this.currentADDate.getFullYear(), this.currentADDate.getMonth() + 1, this.currentADDate.getDate()+1);
         this.createCalender();
       },
       deep: true

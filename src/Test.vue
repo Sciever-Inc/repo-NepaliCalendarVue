@@ -1,6 +1,6 @@
 <template>
 <div>
-  <Calender ad-date="2020/01/01" v-on:dateSelected="test"/>
+  <Calender  v-on:dateSelected="test"/>
 </div>
 </template>
 <script>
@@ -12,7 +12,7 @@ import Calender from "./Calender";
     },
     methods:{
       test:function(message){
-       
+       console.log(message);
       }
     }
   }
