@@ -143,8 +143,9 @@ export class DateConversion {
     }
 
     getNepaliNumber(n) {
-        const nStringArray = n.toString().split('');
-        return nStringArray.map(e => NEPALI_NUMBERS[+e]).join('');
+        return n;
+        // const nStringArray = n.toString().split('');
+        // return nStringArray.map(e => NEPALI_NUMBERS[+e]).join('');
     }
 
     getNepaliMonthName(n) {

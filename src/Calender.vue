@@ -233,7 +233,7 @@ export default {
 .calender-table tbody tr td {
     transition: 0.2s;
     text-align: center;
-    width: 32px;
+    padding:0;
 }
 
 .calender-table tbody tr td:hover {
@@ -244,6 +244,7 @@ export default {
     text-decoration: none;
     font-size: 14px;
     color: #576574;
+    padding: 12px 17px;
 }
 
 .calender-table tbody tr td:last-child a {
