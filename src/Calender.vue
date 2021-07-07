@@ -113,7 +113,7 @@ export default {
       const maxMonthDays = this.dateConversion.getBsMonthDays(this.currentBSDate.bsYear, this.currentBSDate.bsMonth);
       const adDate = this.dateConversion.getAdDateByBsDate(this.currentBSDate.bsYear, this.currentBSDate.bsMonth, 1);
       const skipDays = adDate.getDay();
-      const monthStartIndex = -skipDays;
+      const monthStartIndex = -skipDays+2;
       const maxMonthDaysIndex = 42;
 
       let weekDaysArray = [];
