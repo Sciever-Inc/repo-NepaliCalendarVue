@@ -111,9 +111,9 @@ export default {
     createCalender(){
       this.monthDaysArray =[];
       const maxMonthDays = this.dateConversion.getBsMonthDays(this.currentBSDate.bsYear, this.currentBSDate.bsMonth);
-      const adDate = this.dateConversion.getAdDateByBsDate(this.currentBSDate.bsYear, this.currentBSDate.bsMonth, 1);
+      const adDate = this.dateConversion.getAdDateByBsDate(this.currentBSDate.bsYear, this.currentBSDate.bsMonth, 0);
       const skipDays = adDate.getDay();
-      const monthStartIndex = -skipDays+2;
+      let monthStartIndex = -skipDays+1;
       const maxMonthDaysIndex = 42;
 
       let weekDaysArray = [];

@@ -1,7 +1,7 @@
 import {DATE_CONVERSION_FORMULA} from "./constants/date-conversion";
 import {DATE_RANGE} from "./constants/date-range";
 import {FLUCTUATION_MONTHS} from "./constants/fluctation-months";
-import {NEPALI_NUMBERS} from "./constants/nepali-numbers";
+// import {NEPALI_NUMBERS} from "./constants/nepali-numbers";
 import {MONTHS} from "./constants/months";
 
 export class DateConversion {
