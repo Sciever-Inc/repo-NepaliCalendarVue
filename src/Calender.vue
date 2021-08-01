@@ -315,4 +315,10 @@ export default {
     margin-top: 2px;
     cursor: pointer;
 }
+.calender-wrapper td.active{
+  background: #313131;
+}
+.calender-wrapper td.active a{
+  color: #fff;
+}
 </style>
