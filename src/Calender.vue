@@ -1,6 +1,6 @@
 <template>
 <div class="calender-wrapper">
-  <input type="text"   @focus="calenderStatus('focus')" @blur="calenderStatus('blur')" v-model="currentBSDateString" @keyup="updateDate($event)">
+  <input type="text"   @focus="calenderStatus('focus')" @blur="calenderStatus('blur')" v-model="currentBSDateString" @keyup="updateDate($event)" @keydown="enterDate($event)">
   <div class="calender-interface" @mouseover="insideCalender=true" @mouseout="insideCalender=false" v-bind:class="{hide:hideCalender,show:!hideCalender}">
     <div class="info-container">
       <ul>
@@ -165,6 +165,25 @@ export default {
         return false;
       }
       return {year:dateArr[0],month:dateArr[1],day: dateArr[2]};
+    },
+    enterDate(event){
+      console.log(event.keyCode);
+      if(event.keyCode===13){
+        const date = event.target.value;
+        const formatedDate = this.checkValidDate(date)
+        if(!formatedDate){
+          return;
+        }
+        this.currentBSDate.bsDate = formatedDate.day;
+        this.currentBSDate.bsYear = formatedDate.year;
+        this.currentBSDate.bsMonth = formatedDate.month;
+        this.currentBSDateString = this.dateConversion.getNepaliNumber(this.currentBSDate.bsYear)+'/'+this.dateConversion.getNepaliNumber(this.currentBSDate.bsMonth)+'/'+this.dateConversion.getNepaliNumber(this.currentBSDate.bsDate);
+        this.currentADDate = this.dateConversion.getAdDateByBsDate(this.currentBSDate.bsYear,this.currentBSDate.bsMonth,this.currentBSDate.bsDate-1);
+        this.$emit('dateSelected', this.currentADDate);
+        this.hideCalender = true;
+        event.target.blur();
+      }
+      return;
     }
   },
   data() {
